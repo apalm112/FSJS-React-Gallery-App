@@ -78,6 +78,12 @@ input {
 .photo-container .not-found {
   width: 100%;
 }
+.icon-gif {
+  font-size: 6em;
+  margin-bottom: 0;
+  color: #7bcbc4;
+  display: block;
+}
 
 @media only screen and (max-width: 767px)  {
   body {

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import '../css/App.css';
 import axios from 'axios';
 
-import '../css/App.css';
-import PhotoList from '../components/PhotoList';
 import SearchForm from '../components/SearchForm';
+import PhotoList from '../components/PhotoList';
+import NoPhotos from '../components/NoPhotos';
 
 export default class App extends Component {
 	// Declare the state object.
@@ -20,7 +21,7 @@ export default class App extends Component {
 	}
 
 	performSearch = (query = "space cats") => {
-		axios.get(`http://api.giphy.com/vi/gifs/search?1=${query}&limit=4&api_key=dc6zaTOxFJmzC`)
+		axios.get(`http://api.giphy.com/v1/gifs/search?q=${query}&limit=12&api_key=dc6zaTOxFJmzC`)
 		.then(response => {
 			this.setState({
 				photos: response.data.data,
@@ -35,7 +36,7 @@ export default class App extends Component {
   render() {
 		console.log(this.state.photos);
     return (
-      <div className="container">
+      <div className="photo-container">
 					<SearchForm onSearch={this.performSearch} />
 				<nav className="main-nav">
 					<ul>
@@ -53,6 +54,7 @@ export default class App extends Component {
 						: <PhotoList data={this.state.data} />
 					}
 				</div>
+				<NoPhotos />
       </div>
     );
   }
