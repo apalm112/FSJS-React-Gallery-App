@@ -10,6 +10,12 @@
 	* Build a static version, then can find sections of app that need to repeat or need to be conditionally shown & break them into separate components.  
 
 
+	nhampton [Today at 11:22 AM]
+in #project-09
+`PhotoContainer` is going to use `componentWillReceiveProps` like `componentWillMount`, using the router reference passed in `props` to get the path name, and using that path name, either display the search bar or make a flickr request to get sunsets, kittens, or balloons
+
+
+
 
 
 * Update the CSS to resemble the mockup.		✔️
