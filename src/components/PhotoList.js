@@ -13,7 +13,7 @@ const PhotoList = props => {
 	}
 */
 		return (
-			<ul className="photo-container">
+			<ul>
 				{props.passFlickrPhotos.map((prop, index) =>
 					<Photo
 						farm={prop.farm}
