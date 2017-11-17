@@ -6,15 +6,14 @@ import {
 import axios from 'axios';
 
 import '../css/App.css';
-import flickrKeys from '../.myConfig.js';
+import flickrAPI from '../.myConfig.js';
 import MainNav from './MainNav';
 import NotFound from './NotFound';
 import SearchForm from './SearchForm';
-import Photo from './Photo';
 import PhotoList from './PhotoList';
 
 
-const PHOTOS = [
+/*const PHOTOS = [
 	{
 		src: "https://farm5.staticflickr.com/4334/37032996241_4c16a9b530.jpg",
 		id: "1",
@@ -31,25 +30,23 @@ const PHOTOS = [
 		src: "https://farm5.staticflickr.com/4425/36337012384_ba3365621e.jpg",
 		id: "4",
 	},
-];
+];*/
 
-
-const PhotoContainer = (props) => {
-		return (
-			<div className="photo-container">
-				<h2>Results</h2>
-				<ul>
-					<PhotoList1 />
-					<PhotoList2 />
-					<PhotoList3 />
-					<PhotoList4 />
-					{/* <NotFound /> */}
-				</ul>
-			</div>
-		);
-}
-
-const PhotoList1 = (props) => {
+// const PhotoContainer = (props) => {
+// 		return (
+// 			<div className="photo-container">
+// 				<h2>Results</h2>
+// 				<ul>
+// 					<PhotoList1 />
+// 					<PhotoList2 />
+// 					<PhotoList3 />
+// 					<PhotoList4 />
+// 					{/* <NotFound /> */}
+// 				</ul>
+// 			</div>
+// 		);
+// }
+/*const PhotoList1 = (props) => {
 	return (
 		<li>
 			<img src="https://farm5.staticflickr.com/4334/37032996241_4c16a9b530.jpg" alt="" />
@@ -76,35 +73,42 @@ const PhotoList4 = (props) => {
 			<img src="https://farm5.staticflickr.com/4425/36337012384_ba3365621e.jpg" alt="" />
 		</li>
 	);
-}
+}*/
 
 
 export default class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			photos: [],
+			flickrPhotos: [],
 			loading: true,
 		};
 	}
 		componentDidMount() {
-			this.performSearch();
-		}
+			// this.performSearch();
+			// Sauce: https://www.flickr.com/services/api/misc.urls.html
+			// https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
 
-		performSearch = (query = "space cats") => {
-			axios.get(`http://flickr.?q=${query}&limit=12&api_key=${flickrKeys}`)
+
+			axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrAPI}&tags=cats&per_page=5&page=1&format=json&nojsoncallback=1`)
 			.then(response => {
-				this.setState({
-					photos: response.data.data,
-					loading: false,
-				});
+				let resFlickrData = response.data.photos.photo;
+					this.setState({
+					flickrPhotos: resFlickrData.map((photo) => {
+						return {
+							...photo
+						}
+					})
+				})
+				console.log(this.state.flickrPhotos);
 			})
+			.then(response => {})
 			.catch(error => {
 				console.error("Error fetching & parsing the data.", error);
 			})
 		}
 
-
+		performSearch = (query = "space cats") => {}
 
 	 render() {
     return (
@@ -115,8 +119,10 @@ export default class App extends Component {
 
 					<MainNav />
 
-					<PhotoContainer />
-					<PhotoList />
+					{/* <PhotoContainer /> */}
+					<PhotoList
+						passFlickrPhotos={this.state.flickrPhotos}
+					/>
 
 					<Route path="/NotFound" component={NotFound} />
 	      </div>

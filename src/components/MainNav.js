@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import SpaceCats from './SpaceCats';
 import Doggo from './Doggo';
