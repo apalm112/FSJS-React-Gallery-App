@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import '../css/App.css';
 import axios from 'axios';
 
-import SearchForm from '../components/SearchForm';
-import PhotoList from '../components/PhotoList';
 import NoPhotos from '../components/NoPhotos';
+import PhotoList from '../components/PhotoList';
+import SearchForm from '../components/SearchForm';
 
 export default class App extends Component {
 	// Declare the state object.
@@ -29,7 +29,7 @@ export default class App extends Component {
 			});
 		})
 		.catch(error => {
-			console.log("Error fetching and parsing data", error);
+			console.error("Error fetching and parsing data", error);
 		})
 	}
 
@@ -51,7 +51,7 @@ export default class App extends Component {
 					{
 						(this.state.loading)
 						? <p>Loading...........</p>
-						: <PhotoList data={this.state.data} />
+						: <PhotoList data={this.state.photos} />
 					}
 				</div>
 				<NoPhotos />
@@ -59,5 +59,3 @@ export default class App extends Component {
     );
   }
 }
-
-// export default App;
