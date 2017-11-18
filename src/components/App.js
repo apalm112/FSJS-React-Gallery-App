@@ -21,18 +21,18 @@ export default class App extends Component {
 		};
 	}
 		componentDidMount() {
-			// this.performSearch();
-			// Sauce: https://www.flickr.com/services/api/misc.urls.html
-			// https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
+			this.performSearch();
+		}
 
-
-			axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrAPI}&tags=cats&per_page=5&page=1&format=json&nojsoncallback=1`)
+		performSearch = (query = "node.js") => {
+			axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrAPI}&tags=${query}&per_page=12&page=1&format=json&nojsoncallback=1`)
 			.then(response => {
 				let resFlickrData = response.data.photos.photo;
 					this.setState({
 					flickrPhotos: resFlickrData.map((photo) => {
 						return {
-							...photo
+							...photo,
+							loading: false,
 						}
 					})
 				})
@@ -44,22 +44,15 @@ export default class App extends Component {
 			})
 		}
 
-		performSearch = (query = "space cats") => {}
-
 	 render() {
     return (
 			<BrowserRouter>
 	      <div className="Container">
 					<Route path="/"  />
-					<SearchForm />
-
+					<SearchForm onSearch={this.performSearch} />
 					<MainNav />
-
-					{/* <PhotoContainer /> */}
 					<div className="photo-container">
-						<PhotoList
-							passFlickrPhotos={this.state.flickrPhotos}
-						/>
+						<PhotoList passFlickrPhotos={this.state.flickrPhotos} />
 					</div>
 					<Route path="/NotFound" component={NotFound} />
 	      </div>

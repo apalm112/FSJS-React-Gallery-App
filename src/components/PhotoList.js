@@ -1,20 +1,26 @@
 import React from 'react';
 import Photo from './Photo';
-// import NotFound from './NotFound';
+import NotFound from './NotFound';
 
 const PhotoList = props => {
-/*	const results = props.passFlickrPhotos;
-	console.log("RESULTS: ", results);
-	let photos = '';
+	const results = props.passFlickrPhotos;
+	let photos;
 	if (results.length > 0) {
-		photos = results.map(photo => <Photo url={photo.images.fixed_height.url} key={photo.id} />);
+		photos = results.map((photo, index) =>
+			<Photo
+				farm={photo.farm}
+				server={photo.server}
+				secret={photo.secret}
+				id={photo.id}
+				key={photo.id}
+			/>);
 	} else {
 		photos = <NotFound />
 	}
-*/
+
 		return (
-			<ul>
-				{props.passFlickrPhotos.map((prop, index) =>
+			<ul className="photo-container">
+				{/* {props.passFlickrPhotos.map((prop, index) =>
 					<Photo
 						farm={prop.farm}
 						server={prop.server}
@@ -22,7 +28,8 @@ const PhotoList = props => {
 						id={prop.id}
 						key={prop.id}
 					/>
-				)}
+				)} */}
+				{photos}
 			</ul>
 		);
 }
