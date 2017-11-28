@@ -28,14 +28,11 @@ const MainNav = props => {
 
 				<Route path="/" render={ () => <PresetLink title="Sun" onClick={this.handleClick} /> } /> */}
 
-																													 {/* NOT WORKING! */}
 				<PresetLink title="Cat" performSearch={props.performSearch} />
 
 				<PresetLink title="Dog" performSearch={props.performSearch} />
 
 				<PresetLink title="Sun" performSearch={props.performSearch} />
-
-
 
 				<Route path="/notfound" component={NotFound} />
 			</ul>
