@@ -15,23 +15,23 @@ const PhotoList = props => {
 				key={photo.id}
 			/>);
 	} else {
-		photos = <NotFound />
+		photos = <NotFound path="/not_found" query={props.query}/>
 	}
 
-		return (
-			<ul className="photo-container">
-				{/* {props.passFlickrPhotos.map((prop, index) =>
-					<Photo
-						farm={prop.farm}
-						server={prop.server}
-						secret={prop.secret}
-						id={prop.id}
-						key={prop.id}
-					/>
-				)} */}
-				{photos}
-			</ul>
-		);
-}
+	return (
+		<ul className="photo-container">
+			{/* {props.passFlickrPhotos.map((prop, index) =>
+				<Photo
+					farm={prop.farm}
+					server={prop.server}
+					secret={prop.secret}
+					id={prop.id}
+					key={prop.id}
+				/>
+			)} */}
+			{photos}
+		</ul>
+	);
+};
 
 export default PhotoList;
