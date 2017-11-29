@@ -78,11 +78,18 @@ input {
 .photo-container .not-found {
   width: 100%;
 }
+.not-found {
+	list-style: none;
+}
 .icon-gif {
   font-size: 6em;
   margin-bottom: -10px;
   color: #7bcbc4;
   display: block;
+}
+.icn-error {
+  font-size: 3.2em;
+  margin-bottom: .25em;
 }
 
 @media only screen and (max-width: 767px)  {

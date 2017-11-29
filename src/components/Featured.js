@@ -1,13 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const PresetLink = ( props, {match} ) => {
+const Featured = ( props, {match} ) => {
 	let item = props.title;
 	return (
 		<li>
 			<NavLink
 				to={props.title}
-				// onClick={ () => {this.handleClick} }
 				onClick={() => props.performSearch(item)}
 			>
 				{props.title}
@@ -16,7 +15,7 @@ const PresetLink = ( props, {match} ) => {
 	);
 };
 
-export default PresetLink;
+export default Featured;
 
 
 // {function() {props.onChange(-1);}}

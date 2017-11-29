@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import {
 	BrowserRouter,
-	Route
+	Route,
+	Switch
 } from 'react-router-dom';
 import axios from 'axios';
 
 import '../css/App.css';
 import flickrAPI from '../.myConfig.js';
+import FourZeroFour from './FourZeroFour';
 import MainNav from './MainNav';
-import NotFound from './NotFound';
+import PhotoContainer from './PhotoContainer';
 import SearchForm from './SearchForm';
-import PhotoList from './PhotoList';
 
 export default class App extends Component {
 	constructor(props) {
@@ -24,7 +25,7 @@ export default class App extends Component {
 			this.performSearch();
 		}
 
-		performSearch = (query = "panda") => {
+		performSearch = (query = "stuff") => {
 			console.log('FUNCTION PASSED INTO COMPONENT....');
 			axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrAPI}&tags=${query}&per_page=12&page=1&format=json&nojsoncallback=1`)
 			.then(response => {
@@ -51,24 +52,16 @@ export default class App extends Component {
 		}
 
 	 render() {
+		// const { match } = this.props
     return (
 			<BrowserRouter>
-	      <div className="Container">
-
-					<Route path="/" render={ () => <SearchForm onSearch={this.performSearch} /> }/>
-
-					{/* <Route path="/" render={ () => <MainNav onClick={this.performSearch} /> } /> */}
-
-					{/* <MainNav buttonHandler={this.buttonHandler} /> */}
-					<MainNav performSearch={this.performSearch} />
-
-
-					<div className="photo-container">
-
-						<PhotoList passFlickrPhotos={this.state.flickrPhotos} />
-
-					</div>
-					<Route path="/NotFound" component={NotFound} />
+	      <div className="container">
+					{/* <Switch> */}
+						<Route exact path="/" render={ () => <SearchForm onSearch={this.performSearch} /> }/>
+						<Route path="/" render={ () => <MainNav performSearch={this.performSearch} buttonHandler={this.buttonHandler} /> } />
+						<Route path="/" render={ () => <PhotoContainer passFlickrPhotos={this.state.flickrPhotos} /> } />
+						<Route path="/:notfound" component={FourZeroFour} />
+					{/* </Switch> */}
 	      </div>
 			</BrowserRouter>
     );

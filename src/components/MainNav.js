@@ -1,20 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import {
-	NavLink,
 	Route,
-	Redirect,
-	Switch
 } from 'react-router-dom';
 
-import Cat from './Cat';
-import Dog from './Dog';
-import PresetLink from './PresetLink';
-import NotFound from './NotFound';
-import Sun from './Sun';
+// import Cat from './Cat';
+// import Dog from './Dog';
+// import Sun from './Sun';
 
+import Featured from './Featured';
 
-const MainNav = props => {
+const MainNav = (props, {match}) => {
 
 	// onClickPerformSearch = event => {
 	// }
@@ -22,19 +18,32 @@ const MainNav = props => {
 	return (
 		<nav className="main-nav">
 			<ul>
-				{/* <Route path="/" render={ () => <PresetLink title="Cat" onClick={this.handleClick} /> } />
-						(e.target.text)
-				<Route path="/" render={ () => <PresetLink title="Dog" onClick={this.handleClick} /> } />
+				<Route path="/" render={ () => <Featured title="Sauron" performSearch={props.performSearch} /> } />
+				<Route path="/" render={ () => <Featured title="Dog" performSearch={props.performSearch} /> } />
+				<Route path="/" render={ () => <Featured title="Sun" performSearch={props.performSearch} /> } />
 
-				<Route path="/" render={ () => <PresetLink title="Sun" onClick={this.handleClick} /> } /> */}
+				{/* <Featured title="Cat" performSearch={props.performSearch} />
+				<Featured title="Dog" performSearch={props.performSearch} />
+				<Featured title="Sun" performSearch={props.performSearch} /> */}
 
-				<PresetLink title="Cat" performSearch={props.performSearch} />
+				{/*
+								<li><NavLink
+									to="/Sauron"
+									onClick={() => props.performSearch()}>
+									Sauron
+									</NavLink></li>
+								<li><NavLink
+									to="/Dob"
+									onClick={() => props.performSearch()}>
+									Dog
+									</NavLink></li>
+								<li><NavLink
+									to="/Sun"
+									onClick={() => props.performSearch()}>
+									Sun
+									</NavLink></li> */}
 
-				<PresetLink title="Dog" performSearch={props.performSearch} />
 
-				<PresetLink title="Sun" performSearch={props.performSearch} />
-
-				<Route path="/notfound" component={NotFound} />
 			</ul>
 		</nav>
 	);
