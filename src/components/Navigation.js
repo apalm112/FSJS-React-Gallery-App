@@ -1,7 +1,8 @@
 import React from 'react';
 
 import {
-	Route,
+	// Link,
+	Route
 } from 'react-router-dom';
 
 // import Cat from './Cat';
@@ -10,11 +11,8 @@ import {
 
 import Featured from './Featured';
 
-const MainNav = (props, {match}) => {
-
-	// onClickPerformSearch = event => {
-	// }
-
+const Navigation = (props, {match}) => {
+	// let item = props.title;
 	return (
 		<nav className="main-nav">
 			<ul>
@@ -26,22 +24,22 @@ const MainNav = (props, {match}) => {
 				<Featured title="Dog" performSearch={props.performSearch} />
 				<Featured title="Sun" performSearch={props.performSearch} /> */}
 
-				{/*
-								<li><NavLink
-									to="/Sauron"
-									onClick={() => props.performSearch()}>
-									Sauron
-									</NavLink></li>
-								<li><NavLink
-									to="/Dob"
-									onClick={() => props.performSearch()}>
-									Dog
-									</NavLink></li>
-								<li><NavLink
-									to="/Sun"
-									onClick={() => props.performSearch()}>
-									Sun
-									</NavLink></li> */}
+				{/* This works, but same problem w/ page not refreshing photo data on browser button click:
+				<li><Link
+					to="/Sauron"
+					onClick={() => props.performSearch('Sauron')}>
+					Sauron
+				</Link></li>
+				<li><Link
+					to="/Dog"
+					onClick={() => props.performSearch('Dog')}>
+					Dog
+				</Link></li>
+				<li><Link
+					to="/Sun"
+					onClick={() => props.performSearch('Sun')}>
+					Sun
+				</Link></li>		*/}
 
 
 			</ul>
@@ -49,4 +47,4 @@ const MainNav = (props, {match}) => {
 	);
 };
 
-export default MainNav;
+export default Navigation;

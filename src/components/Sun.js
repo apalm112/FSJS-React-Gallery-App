@@ -1,9 +1,9 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Sun = (props) => {
 	return (
-		<li><NavLink to="/sun">{props.title}</NavLink></li>
+		<li><Link to="/sun">{props.title}</Link></li>
 	);
 };
 

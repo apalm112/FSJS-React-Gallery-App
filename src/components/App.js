@@ -7,9 +7,9 @@ import {
 import axios from 'axios';
 
 import '../css/App.css';
-import flickrAPI from '../.myConfig.js';
+import flickrAPI from '../.myConfig';
 import FourZeroFour from './FourZeroFour';
-import MainNav from './MainNav';
+import Navigation from './Navigation';
 import PhotoContainer from './PhotoContainer';
 import SearchForm from './SearchForm';
 
@@ -19,13 +19,15 @@ export default class App extends Component {
 		this.state = {
 			flickrPhotos: [],
 			loading: true,
+			searchText: '',
 		};
 	}
 		componentDidMount() {
 			this.performSearch();
+			console.log('compDidMount is working');
 		}
 
-		performSearch = (query = "stuff") => {
+		performSearch = (query = "hiking") => {
 			console.log('FUNCTION PASSED INTO COMPONENT....');
 			axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrAPI}&tags=${query}&per_page=12&page=1&format=json&nojsoncallback=1`)
 			.then(response => {
@@ -34,21 +36,27 @@ export default class App extends Component {
 					flickrPhotos: resFlickrData.map((photo) => {
 						return {
 							...photo,
-							loading: false,
 						}
-					})
+					}),
+					loading: false,
+					searchText: query,
 				})
 				// console.log(this.state.flickrPhotos);
+				console.log('searchText Value is: ', this.state.searchText);
 			})
-			.then(response => {})
 			.catch(error => {
 				console.error("Error fetching & parsing the data.", error);
 			})
 		}
 		buttonHandler(e) {
-			// e.preventDefault();
+			e.preventDefault();
 			e.target.style.backgroundColor = 'lime';
 			console.log(e.target.text);
+		}
+
+		componentWillReceiveProps(nextProps) {
+			this.performSearch();
+			console.log("componentWillReceiveProps is working?");
 		}
 
 	 render() {
@@ -58,9 +66,13 @@ export default class App extends Component {
 	      <div className="container">
 					{/* <Switch> */}
 						<Route exact path="/" render={ () => <SearchForm onSearch={this.performSearch} /> }/>
-						<Route path="/" render={ () => <MainNav performSearch={this.performSearch} buttonHandler={this.buttonHandler} /> } />
-						<Route path="/" render={ () => <PhotoContainer passFlickrPhotos={this.state.flickrPhotos} /> } />
-						<Route path="/:notfound" component={FourZeroFour} />
+
+						<Navigation performSearch={this.performSearch} />
+
+						<PhotoContainer passFlickrPhotos={this.state.flickrPhotos} searchText={this.state.searchText} />
+
+						<Route path="/notfound404" render={ () => <FourZeroFour /> } />
+
 					{/* </Switch> */}
 	      </div>
 			</BrowserRouter>

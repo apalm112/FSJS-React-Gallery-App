@@ -1,16 +1,17 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const Featured = ( props, {match} ) => {
+const Featured = ( props ) => {
 	let item = props.title;
+	// const {activity} = this.props;
 	return (
 		<li>
-			<NavLink
+			<Link
 				to={props.title}
 				onClick={() => props.performSearch(item)}
 			>
 				{props.title}
-			</NavLink>
+			</Link>
 		</li>
 	);
 };
