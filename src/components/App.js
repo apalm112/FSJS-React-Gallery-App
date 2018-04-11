@@ -8,7 +8,8 @@ import {
 import axios from 'axios';
 
 import '../css/App.css';
-import flickrAPI from '../.config';
+// import dataFetch from './dataFetch';
+import flickrAPI from '../.myConfig';
 import fourZeroFour from './FourZeroFour';
 import Loading from './Loading';
 import Navigation from './Navigation';
@@ -27,6 +28,8 @@ export default class App extends Component {
 		componentDidMount() {
 			this.performSearch();
 		}
+
+		//   The first step your project needs to make is separating the router component (App.js) from the data fetching. The data fetching needs it’s own container component
 
 		performSearch = (query = "clouds") => {
 			axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrAPI}&tags=${query}&per_page=12&page=1&format=json&nojsoncallback=1`)
@@ -53,6 +56,8 @@ export default class App extends Component {
 			<BrowserRouter>
 	      <div className="container">
 						<Route exact path="/" render={ () => <SearchForm onSearch={this.performSearch} /> }/>
+
+						{/* <Route path="/" component={dataFetch} /> */}
 
 						<Route path="/" render={ () => <Navigation performSearch={this.performSearch} /> } />
 						<Switch>
