@@ -19,12 +19,12 @@ const Navigation = (props, {match}) => {
 				<Route path="/" render={ () => <Featured title="Dog" performSearch={props.performSearch} /> } />
 				<Route path="/" render={ () => <Featured title="Sun" performSearch={props.performSearch} /> } /> */}
 
-				{/* This works, but same problem w/ page not refreshing photo data on browser arrow button click:	*/}
 
+				{/* This works, but same problem w/ page not refreshing photo data on browser button click:	*/}
 				<li><NavLink
-					to="/Rabbit"
-					onClick={() => props.performSearch('Rabbit')}>
-					Rabbit
+					to="/Cat"
+					onClick={() => props.performSearch('Cat')}>
+					Cat
 				</NavLink></li>
 				<li><NavLink
 					to="/Dog"
@@ -36,7 +36,6 @@ const Navigation = (props, {match}) => {
 					onClick={() => props.performSearch('Sun')}>
 					Sun
 				</NavLink></li>
-
 
 			{/* Trying Routes here */}
 			{/*

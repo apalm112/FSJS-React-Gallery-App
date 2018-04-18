@@ -49,21 +49,14 @@ export default class App extends Component {
 					loading: false,
 					searchText: query,
 				})
-				// console.log(this.state.flickrPhotos);
 				console.log('searchText Value is: ', this.state.searchText);
 			})
 			.catch(error => {
 				console.error("Error fetching & parsing the data.", error);
 			})
 		}
-		buttonHandler(e) {
-			e.preventDefault();
-			e.target.style.backgroundColor = 'lime';
-			console.log(e.target.text);
-		}
 
 	 render() {
-		// const { match } = this.props
     return (
 			<BrowserRouter>
 	      <div className="container">
@@ -87,10 +80,3 @@ export default class App extends Component {
     );
 	}
 }
-
-
-
-
-
-
-//
