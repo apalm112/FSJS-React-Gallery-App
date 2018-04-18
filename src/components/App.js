@@ -12,8 +12,8 @@ import '../css/App.css';
 // App Components
 // import DataFetch from './DataFetch';
 import flickrAPI from '../.myConfig';
-import fourZeroFour from './FourZeroFour';
-import Loading from './Loading';
+import fourZeroFour from './exceeds/FourZeroFour';
+import Loading from './exceeds/Loading';
 import Navigation from './Navigation';
 import PhotoContainer from './PhotoContainer';
 import SearchForm from './SearchForm';

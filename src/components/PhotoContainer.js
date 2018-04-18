@@ -1,6 +1,6 @@
 import React from 'react';
 import Photo from './Photo';
-import NotFound from './NotFound';
+import NotFound from './exceeds/NotFound';
 
 const PhotoContainer = props => {
 	// TODO:  A container component that takes in a keyword and api key as props, and fetches the photos and other required information from the API
