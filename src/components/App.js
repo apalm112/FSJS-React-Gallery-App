@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import {
 	BrowserRouter,
+	Redirect,
 	Route,
 	Switch
 } from 'react-router-dom';
 import axios from 'axios';
 
 import '../css/App.css';
+
+// App Components
+// import DataFetch from './DataFetch';
 import flickrAPI from '../.myConfig';
-import FourZeroFour from './FourZeroFour';
+import fourZeroFour from './FourZeroFour';
+import Loading from './Loading';
 import Navigation from './Navigation';
 import PhotoContainer from './PhotoContainer';
 import SearchForm from './SearchForm';
@@ -24,11 +29,14 @@ export default class App extends Component {
 	}
 		componentDidMount() {
 			this.performSearch();
-			console.log('compDidMount is working');
 		}
-
-		performSearch = (query = "hiking") => {
-			console.log('FUNCTION PASSED INTO COMPONENT....');
+		// TODO: You should do all data fetching from a container component that passes the data down to presentational components responsible for displaying images!
+		// const results = props.passFlickrPhotos;
+		//			<h2>{props.searchText}</h2>
+		//			onClick={props.thingToRenameSoFunctionGetsPassed} >
+		//			Data fetched from a "container" component that passes data down to presentation component via props
+		// Default query value for initial page load.
+		performSearch = (query='tomato') => {
 			axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrAPI}&tags=${query}&per_page=12&page=1&format=json&nojsoncallback=1`)
 			.then(response => {
 				let resFlickrData = response.data.photos.photo;
@@ -54,26 +62,26 @@ export default class App extends Component {
 			console.log(e.target.text);
 		}
 
-		componentWillReceiveProps(nextProps) {
-			this.performSearch();
-			console.log("componentWillReceiveProps is working?");
-		}
-
 	 render() {
 		// const { match } = this.props
     return (
 			<BrowserRouter>
 	      <div className="container">
-					{/* <Switch> */}
 						<Route exact path="/" render={ () => <SearchForm onSearch={this.performSearch} /> }/>
 
-						<Navigation performSearch={this.performSearch} />
+						<Route render={ () => <Navigation performSearch={this.performSearch} /> } />
+						<Switch>
 
-						<PhotoContainer passFlickrPhotos={this.state.flickrPhotos} searchText={this.state.searchText} />
+						{
+							(this.state.loading)
+								? <Loading />
+								: <Route path="/" render={ () =><PhotoContainer passFlickrPhotos={this.state.flickrPhotos} searchText={this.state.searchText} /> } />
+						}
 
-						<Route path="/notfound404" render={ () => <FourZeroFour /> } />
 
-					{/* </Switch> */}
+
+						{/*  Commented out da Not working. <Redirect to="/notfound" component={fourZeroFour} /> */}
+					</Switch>
 	      </div>
 			</BrowserRouter>
     );

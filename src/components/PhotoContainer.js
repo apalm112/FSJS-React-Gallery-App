@@ -3,6 +3,7 @@ import Photo from './Photo';
 import NotFound from './NotFound';
 
 const PhotoContainer = props => {
+	// TODO:  A container component that takes in a keyword and api key as props, and fetches the photos and other required information from the API
 	const results = props.passFlickrPhotos;
 	/*
 	  This works, but replaced it w/ the ternary operator inside the JSX below.
