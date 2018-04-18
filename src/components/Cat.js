@@ -1,10 +1,10 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const Cat = (props) => {
+	let item = props.title;
 	return (
-		<li><NavLink to="/cat" onClick={props.performSearch} >{props.title}</NavLink></li>
+		<li><Link to={props.title} onClick={props.performSearch(item)} >{props.title}</Link></li>
 	);
 };
 /*Cat.propTypes = {

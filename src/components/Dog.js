@@ -1,9 +1,10 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Dog = (props) => {
+	let item = props.title;
 	return (
-		<li><NavLink to="/dog">{props.title}</NavLink></li>
+		<li><Link to={props.title} onClick={props.performSearch(item)} >{props.title}</Link></li>
 	);
 };
 

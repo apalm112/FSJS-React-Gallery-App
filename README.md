@@ -14,14 +14,14 @@
 
 * Update the CSS to resemble the mockup.		✔️
 
-* Install React Router & set up the app components.
+* Install React Router & set up the app components.		
 
 * Get a Flickr API key  ✔️
 
 * Fetch the data from Flickr API  ✔️
 
 * Display the data		
-	* Use a React component lifecycle method to fetch data when the routes change. For example, if a user clicks the 'Cats' navigation link, the app will fetch and display cat images from Flickr.
+	* Use a React component lifecycle method to fetch data when the routes change. For example, if a user clicks the 'Cats' navigation link, the app will fetch and display cat images from Flickr.		✔️
 
 	* Use a React component lifecycle method to fetch data immediately when the app loads. For example, if the root '/' path is 'Hiking', the app should display hiking images when it loads in the browser.  ✔️
 
