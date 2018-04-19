@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
 	BrowserRouter,
-	Redirect,
+	// Redirect,
 	Route,
 	Switch
 } from 'react-router-dom';
@@ -12,9 +12,9 @@ import '../css/App.css';
 // App Components
 // import DataFetch from './DataFetch';
 import flickrAPI from '../.myConfig';
-import fourZeroFour from './exceeds/FourZeroFour';
+// import fourZeroFour from './exceeds/FourZeroFour';
 import Loading from './exceeds/Loading';
-import Navigation from './Navigation';
+import MainNav from './MainNav';
 import PhotoContainer from './PhotoContainer';
 import SearchForm from './SearchForm';
 
@@ -60,9 +60,11 @@ export default class App extends Component {
     return (
 			<BrowserRouter>
 	      <div className="container">
+
 						<Route exact path="/" render={ () => <SearchForm onSearch={this.performSearch} /> }/>
 
-						<Route render={ () => <Navigation performSearch={this.performSearch} /> } />
+						<MainNav performSearch={this.performSearch} />
+
 						<Switch>
 
 						{
@@ -71,9 +73,7 @@ export default class App extends Component {
 								: <Route path="/" render={ () =><PhotoContainer passFlickrPhotos={this.state.flickrPhotos} searchText={this.state.searchText} /> } />
 						}
 
-
-
-						{/*  Commented out da Not working. <Redirect to="/notfound" component={fourZeroFour} /> */}
+						{/*  Commented out da Not working. <Redirect to="/404" component={fourZeroFour} /> */}
 					</Switch>
 	      </div>
 			</BrowserRouter>

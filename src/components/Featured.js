@@ -3,24 +3,25 @@ import PropTypes from 'prop-types';
 
 import { NavLink } from 'react-router-dom';
 
-const Sun = (props) => {
+const Featured = (props) => {
 	let item = props.title;
 	return (
 		// <li><Link to={props.title} onClick={props.performSearch(item)} >{props.title}</Link></li>
 		<li><NavLink
 			to={`${item}`}
-			onClick={() => props.performSearch(`${item}`)}>
+			activeStyle={{ backgroundColor: '#275270' }}
+			onClick={() => props.performSearch(`${item}`)} >
 			{item}
 		</NavLink></li>
 	);
 };
-Sun.propTypes = {
+Featured.propTypes = {
 	title: PropTypes.string.isRequired,
 };
 
-Sun.defaultProps = {
-	// This property allows the search/display/results to be changed from Sun to anything else in this one spot.
-	title: 'Sun',
+Featured.defaultProps = {
+	// The title property allows the search/display/results to be changed from 'rock'to anything else in this one spot.
+	title: 'rock',
 };
 
-export default Sun;
+export default Featured;
