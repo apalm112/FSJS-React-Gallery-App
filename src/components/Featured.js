@@ -5,6 +5,8 @@ import { NavLink } from 'react-router-dom';
 
 const Featured = (props) => {
 	let item = props.title;
+	let search = props;
+	console.log(search);
 	return (
 		// BUG: 
 		// Active class styling works w/ <Link>, does Not work w/ <NavLink>
@@ -20,7 +22,7 @@ const Featured = (props) => {
 		</NavLink></li>*/
 		
 		<div>
-		
+		{/* title="Robots" onClick={props.performSearch('Robots')} */}
 		</div>
 		
 	);
