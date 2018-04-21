@@ -1,20 +1,20 @@
 import React
- // { Component }
+// { Component }
 from 'react';
 import PropTypes from 'prop-types'
 import {
-	NavLink,
-	Route,
-	// Redirect,
-	// Switch
+// NavLink,
+// Route,
+// Redirect,
+// Switch
 } from 'react-router-dom';
 
-import axios from 'axios';
+// import axios from 'axios';
 
-import Cat from './Cat';
-import Dog from './Dog';
-// import Featured from './Featured';
-import Sun from './Sun';
+// import Cat from './Cat';
+// import Dog from './Dog';
+import Featured from './Featured';
+// import Sun from './Sun';
 
 const MainNav = props => {
 
@@ -28,7 +28,7 @@ const MainNav = props => {
 	//			Data fetched from a "container" component that passes data down to presentation component via props
 
 	// Default query value for initial page load.
-	const performSearch = (query='tomato', flickrAPI) => {
+	/*const performSearch = (query='tomato', flickrAPI) => {
 		axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrAPI}&tags=${query}&per_page=12&page=1&format=json&nojsoncallback=1`)
 			.then(response => {
 				let resFlickrData = response.data.photos.photo;
@@ -47,7 +47,7 @@ const MainNav = props => {
 			.catch(error => {
 				console.error('Error fetching & parsing the data.', error);
 			});
-	};
+	};*/
 	/*********************************************************************************/
 
 
@@ -55,13 +55,13 @@ const MainNav = props => {
 		<nav className="main-nav">
 			<ul>
 				{/* The title property allows the search/display/results to be changed from Cat to anything else in this one spot. */}
-				<Cat title="Ancient Rome" performSearch={props.performSearch} />
+				{/* <Cat title="Ancient Rome" performSearch={props.performSearch} />
 				<Dog title="Jupiter" performSearch={props.performSearch} />
-				<Sun title="Horse" performSearch={props.performSearch} />
+				<Sun title="Horse" performSearch={props.performSearch} /> */}
 				{/*  These Components be used in place of the other 3. Cat,Dog,Sun But the project rubric says use a different component for each category to display.			*/}
-				{/* <Featured title="Robots" performSearch={props.performSearch} />
-				<Featured title="Science" performSearch={props.performSearch} />
-				<Featured title="Plasma" performSearch={props.performSearch} /> */}
+				<Featured title="Robots" performSearch={props.performSearch} />
+				<Featured title="Black Labrador" performSearch={props.performSearch} />
+				<Featured title="Mushrooms" performSearch={props.performSearch} />
 			</ul>
 		</nav>
 	);

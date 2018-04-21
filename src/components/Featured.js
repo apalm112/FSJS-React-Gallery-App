@@ -8,6 +8,7 @@ const Featured = (props) => {
 	return (
 		// <li><Link to={props.title} onClick={props.performSearch(item)} >{props.title}</Link></li>
 		<li><NavLink
+			activeClassName="active"
 			to={`${item}`}
 			activeStyle={{ backgroundColor: '#275270' }}
 			onClick={() => props.performSearch(`${item}`)} >
