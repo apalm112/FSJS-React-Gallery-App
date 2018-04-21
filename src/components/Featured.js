@@ -11,13 +11,18 @@ const Featured = (props) => {
 		// But using <Link> causes the browser to infinite loop run performSearch() so
 		// the app freezes up.
 		// <li><Link to={props.title} onClick={props.performSearch(item)} >{props.title}</Link></li>
-		<li><NavLink
+		/*<li><NavLink
 			to={`${item}`}
 			exact activeClassName="active"
 			// activeStyle={{ backgroundColor: '#275270' }}
 			onClick={() => props.performSearch(`${item}`)} >
 			{item}
-		</NavLink></li>
+		</NavLink></li>*/
+		
+		<div>
+		
+		</div>
+		
 	);
 };
 Featured.propTypes = {
