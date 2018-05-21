@@ -75,10 +75,31 @@ input {
 .photo-container li:hover img {
   transform: scale(1.65);
 }
-.photo-container .not-found {
+
+/* SPINNER ****************************************/
+ .spinner:before {
   width: 100%;
+	list-style: none;
+	box-sizing: border-box;
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 100px;
+	width: 100px;
+	margin-top: -30px;
+	margin-left: -30px;
+	border-radius: 50%;
+	border-top: 3px solid blue;
+	border-right: 3px solid transparent;
+	animation: spinner 0.3s linear infinite;
+	}
+@keyframes spinner {
+	to {
+		transform: rotate(360deg);
+	}
 }
-.not-found {
+.spinner {
 	list-style: none;
 }
 .icon-gif {
@@ -91,7 +112,7 @@ input {
   font-size: 3.2em;
   margin-bottom: .25em;
 }
-
+/* MEDIA QUERIES ***************************/
 @media only screen and (max-width: 767px)  {
   body {
     padding-top: 2em;
