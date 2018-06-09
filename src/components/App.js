@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
 	BrowserRouter,
-	// Redirect,
 	NavLink,
 	Route,
 	Switch
@@ -11,9 +10,7 @@ import axios from 'axios';
 import '../css/App.css';
 
 // App Components
-// import DataFetch from './DataFetch';
 import flickrAPI from '../.myConfig';
-// import fourZeroFour from './exceeds/FourZeroFour';
 import Loading from './exceeds/Loading';
 import MainNav from './MainNav';
 import PhotoContainer from './PhotoContainer';
@@ -31,17 +28,6 @@ export default class App extends Component {
 		componentDidMount() {
 			this.performSearch();
 		}
-		// TODO: 1) Fix routing so that the NavLinks show active backgroundColor when clicked on, the three navlink <li>'s
-							// The active class works when <Featured> uses Link instead of NavLink.
-
-		// 			 2) Fix routing so browser arrows render photolist changes along w/ the browser history.
-
-		// 			 3) Get the 404 Error Page to Render
-		// const results = props.passFlickrPhotos;
-
-		//			<h2>{props.searchText}</h2>
-		//			onClick={props.thingToRenameSoFunctionGetsPassed} >
-		//			Data fetched from a "container" component that passes data down to presentation component via props
 
 		// Default query value for initial page load.
 		performSearch = (query='tomato') => {
@@ -68,20 +54,14 @@ export default class App extends Component {
     return (
 			<BrowserRouter>
 	      <div className="container">
-
 						<Route exact path="/" render={ () => <SearchForm onSearch={this.performSearch} /> }/>
-
 						<MainNav performSearch={this.performSearch} />
-
 						<Switch>
-
 						{
 							(this.state.loading)
 								? <Loading />
 								: <Route path="/" render={ () =><PhotoContainer passFlickrPhotos={this.state.flickrPhotos} searchText={this.state.searchText} /> } />
 						}
-
-						{/*  Commented out da Not working. <Redirect to="/404" component={fourZeroFour} /> */}
 					</Switch>
 	      </div>
 			</BrowserRouter>
