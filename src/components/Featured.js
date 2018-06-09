@@ -1,19 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Featured = (props) => {
 	let item = props.title;
+	let search = props;
+	console.log('PROPS PASSED :', search);
 	return (
-		// <li><Link to={props.title} onClick={props.performSearch(item)} >{props.title}</Link></li>
+		// BUG:
+		// Active class styling works w/ <Link>, does Not work w/ <NavLink>
+		// But using <Link> causes the browser to infinite loop run performSearch() so
+		// the app freezes up.
+		/*<li><Link to={props.title} onClick={props.performSearch(item)} >{props.title}</Link></li>*/
+		// Using this <li><NavLink> format works w/ initial PhotoContainer load, but not w/ active styling or URL UI sync up.
 		<li><NavLink
-			activeClassName="active"
 			to={`${item}`}
-			activeStyle={{ backgroundColor: '#275270' }}
+			exact activeClassName="active"
+			// activeStyle={{ backgroundColor: '#275270' }}
 			onClick={() => props.performSearch(`${item}`)} >
 			{item}
 		</NavLink></li>
+
+		// <div></div>
+
 	);
 };
 Featured.propTypes = {

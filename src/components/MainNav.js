@@ -1,68 +1,59 @@
-import React
-// { Component }
-from 'react';
+import React from 'react';
 import PropTypes from 'prop-types'
 import {
-// NavLink,
-// Route,
-// Redirect,
+NavLink,
+Route,
+Redirect,
 // Switch
 } from 'react-router-dom';
 
-// import axios from 'axios';
+// import Featured from './Featured';
+// import PhotoContainer from './PhotoContainer';
 
-// import Cat from './Cat';
-// import Dog from './Dog';
-import Featured from './Featured';
-// import Sun from './Sun';
-
-const MainNav = props => {
-
-
-/*********************************************************************************/
-	// TODO: You should do all data fetching from a container component that passes the data down to presentational components responsible for displaying images!
-	// ** A container component that takes in a keyword and api key as props, and fetches the photos and other required information from the API
-	// const results = props.passFlickrPhotos;
-	//			<h2>{props.searchText}</h2>
-	//			onClick={props.thingToRenameSoFunctionGetsPassed} >
-	//			Data fetched from a "container" component that passes data down to presentation component via props
-	// this.performSearch.bind(this);
-	// Default query value for initial page load.
-	/*const performSearch = (query='tomato', flickrAPI) => {
-		axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrAPI}&tags=${query}&per_page=12&page=1&format=json&nojsoncallback=1`)
-			.then(response => {
-				let resFlickrData = response.data.photos.photo;
-				this.setState({
-					flickrPhotos: resFlickrData.map((photo) => {
-						return {
-							...photo,
-						};
-					}),
-					loading: false,
-					searchText: query,
-				});
-				// console.log(this.state.flickrPhotos);
-				console.log('searchText Value is: ', this.state.searchText);
-			})
-			.catch(error => {
-				console.error('Error fetching & parsing the data.', error);
-			});
-	};*/
-	/*********************************************************************************/
-
-
+const MainNav = (props) => {
 	return (
 		<nav className="main-nav">
 			<ul>
 				{/* The title property allows the search/display/results to be changed from Cat to anything else in this one spot. */}
-				{/* <Cat title="Ancient Rome" performSearch={props.performSearch} />
-				<Dog title="Jupiter" performSearch={props.performSearch} />
-				<Sun title="Horse" performSearch={props.performSearch} /> */}
-				{/*  These Components be used in place of the other 3. Cat,Dog,Sun But the project rubric says use a different component for each category to display.			*/}
-				<Featured title="Robots" performSearch={props.performSearch} />
+
+				{/* The <li><NavLink> combo works for URL/active styling but not refreshing the PhotoContainer. */}
+				<li><NavLink
+					to="/Wave"
+					onClick={() => props.performSearch('Wave')} >
+					Wave
+				</NavLink></li>
+				<li><NavLink
+					to="/Black Labrador"
+					onClick={() => props.performSearch('Black Labrador')} >
+					Black Labrador
+				</NavLink></li>
+				<li><NavLink
+					to="/Mushrooms"
+					onClick={() => props.performSearch('Mushrooms')} >
+					Mushrooms
+				</NavLink></li>
+
+
+				{/* <Featured title="Wave" performSearch={props.performSearch} />
 				<Featured title="Black Labrador" performSearch={props.performSearch} />
-				<Featured title="Mushrooms" performSearch={props.performSearch} />
+				<Featured title="Carrots" performSearch={props.performSearch} /> */}
+
+
+				{/* <li><NavLink to="/robots">Robots</NavLink></li>
+				<li><NavLink to="/black labrador">Black Labrador</NavLink></li>
+				<li><NavLink to="/pizza">Pizza</NavLink></li> */}
+
+
 			</ul>
+
+			{/* Write routes here...
+				These work, but w/ Bug of repeated performSearch() calls.*/}
+			{/* <Route path="/robots" render={ () => <Featured title="Robots" onClick={props.performSearch('Robots')} /> } />
+
+			<Route path="/black labrador" render={ () => <Featured title="Black Labrador" onClick={props.performSearch('Black Labrador')} /> } />
+
+			<Route path="/pizza" render={ () => <Featured title="Pizza" onClick={props.performSearch('Pizza')} /> } /> */}
+
 		</nav>
 	);
 };
