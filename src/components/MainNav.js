@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import {
 NavLink,
-Route,
-Redirect,
+Route
 } from 'react-router-dom';
 
 import Featured from './Featured';
@@ -12,7 +11,6 @@ const MainNav = (props) => {
 	return (
 		<nav className="main-nav">
 			<ul>
-				{/* The <li><NavLink> combo works for URL/active styling but not refreshing the PhotoContainer. */}
 				<li><NavLink
 					to="/Wave"
 					onClick={() => props.performSearch('Wave')} >

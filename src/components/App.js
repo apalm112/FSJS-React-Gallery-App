@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
 	BrowserRouter,
-	NavLink,
 	Route,
 	Switch
 } from 'react-router-dom';
@@ -43,7 +42,7 @@ export default class App extends Component {
 					loading: false,
 					searchText: query,
 				})
-				console.log('searchText Value is: ', this.state.searchText);
+				// console.log('searchText Value is: ', this.state.searchText);
 			})
 			.catch(error => {
 				console.error("Error fetching & parsing the data.", error);
