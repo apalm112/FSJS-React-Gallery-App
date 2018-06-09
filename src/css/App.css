@@ -76,6 +76,13 @@ input {
   transform: scale(1.65);
 }
 
+.photo-container .not-found {
+	width: 100%;
+}
+.not-found {
+	list-style: none;
+}
+
 /* SPINNER ****************************************/
  .spinner:before {
   width: 100%;

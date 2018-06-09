@@ -7,8 +7,8 @@ Redirect,
 // Switch
 } from 'react-router-dom';
 
-import Featured from './Featured';
-import PhotoContainer from './PhotoContainer';
+// import Featured from './Featured';
+// import PhotoContainer from './PhotoContainer';
 
 const MainNav = (props) => {
 	return (
@@ -16,8 +16,8 @@ const MainNav = (props) => {
 			<ul>
 				{/* The title property allows the search/display/results to be changed from Cat to anything else in this one spot. */}
 
-				{/* The <li><NavLink> combo works for URL/acitve styling but not refreshing the PhotoContainer. */}
-				{/* <li><NavLink
+				{/* The <li><NavLink> combo works for URL/active styling but not refreshing the PhotoContainer. */}
+				<li><NavLink
 					to="/Wave"
 					onClick={() => props.performSearch('Wave')} >
 					Wave
@@ -31,12 +31,12 @@ const MainNav = (props) => {
 					to="/Mushrooms"
 					onClick={() => props.performSearch('Mushrooms')} >
 					Mushrooms
-				</NavLink></li> */}
+				</NavLink></li>
 
 
-				<Featured title="Wave" performSearch={props.performSearch} />
+				{/* <Featured title="Wave" performSearch={props.performSearch} />
 				<Featured title="Black Labrador" performSearch={props.performSearch} />
-				<Featured title="Carrots" performSearch={props.performSearch} />
+				<Featured title="Carrots" performSearch={props.performSearch} /> */}
 
 
 				{/* <li><NavLink to="/robots">Robots</NavLink></li>
