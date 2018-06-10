@@ -38,7 +38,7 @@ export default class SearchForm extends Component {
 					</svg>
 				</button>
 
-				// TODO: get the text '/search' to show in the URL bar when a user search is done.
+				{/* // TODO: get the text '/search' to show in the URL bar when a user search is done. */}
 				<NavLink to="/:searchText" />
 
 			</form>
