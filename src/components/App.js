@@ -42,7 +42,6 @@ export default class App extends Component {
 					loading: false,
 					searchText: query,
 				})
-				// console.log('searchText Value is: ', this.state.searchText);
 			})
 			.catch(error => {
 				console.error("Error fetching & parsing the data.", error);
