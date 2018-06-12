@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+
 
 export default class SearchForm extends Component {
 
@@ -15,6 +16,7 @@ export default class SearchForm extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		this.props.onSearch(this.query.value);
+		this.props.changeLoading();		
 		e.currentTarget.reset();
 	}
 
@@ -36,6 +38,10 @@ export default class SearchForm extends Component {
 						<path d="M0 0h24v24H0z" fill="none"/>
 					</svg>
 				</button>
+
+				{/* // TODO: get the text '/search' to show in the URL bar when a user search is done. */}
+				<NavLink to="/:searchText" />
+
 			</form>
 		);
 	}

@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import {
 	BrowserRouter,
-	// Redirect,
-	NavLink,
 	Route,
 	Switch
 } from 'react-router-dom';
+
 import axios from 'axios';
 
 import '../css/App.css';
 
 // App Components
-// import DataFetch from './DataFetch';
 import flickrAPI from '../.myConfig';
-// import fourZeroFour from './exceeds/FourZeroFour';
 import Loading from './exceeds/Loading';
 import MainNav from './MainNav';
+import FourZeroFour from './exceeds/FourZeroFour';
 import PhotoContainer from './PhotoContainer';
 import SearchForm from './SearchForm';
 
@@ -24,64 +22,56 @@ export default class App extends Component {
 		super(props);
 		this.state = {
 			flickrPhotos: [],
-			loading: true,
+			isLoading: true,
 			searchText: '',
 		};
 	}
 		componentDidMount() {
 			this.performSearch();
+			// this.setState({ isLoading: true });
 		}
-		// TODO: 1) Fix routing so that the NavLinks show active backgroundColor when clicked on, the three navlink <li>'s
-							// The active class works when <Featured> uses Link instead of NavLink.
-
-		// 			 2) Fix routing so browser arrows render photolist changes along w/ the browser history.
-
-		// 			 3) Get the 404 Error Page to Render
-		// const results = props.passFlickrPhotos;
-
-		//			<h2>{props.searchText}</h2>
-		//			onClick={props.thingToRenameSoFunctionGetsPassed} >
-		//			Data fetched from a "container" component that passes data down to presentation component via props
 
 		// Default query value for initial page load.
 		performSearch = (query='tomato') => {
-			axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrAPI}&tags=${query}&per_page=12&page=1&format=json&nojsoncallback=1`)
-			.then(response => {
-				let resFlickrData = response.data.photos.photo;
-					this.setState({
-					flickrPhotos: resFlickrData.map((photo) => {
-						return {
-							...photo,
-						}
-					}),
-					loading: false,
-					searchText: query,
+			// this.setState({ isLoading: true }), () => {}
+				axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrAPI}&tags=${query}&per_page=12&page=1&format=json&nojsoncallback=1`)
+				.then(response => {
+					let resFlickrData = response.data.photos.photo;
+						this.setState({
+						flickrPhotos: resFlickrData.map((photo) => {
+							return {
+								...photo,
+							}
+						}),
+						isLoading: false,
+						searchText: query,
+					})
 				})
-				console.log('searchText Value is: ', this.state.searchText);
-			})
-			.catch(error => {
-				console.error("Error fetching & parsing the data.", error);
-			})
+				.catch(error => {
+					console.error("Error fetching & parsing the data.", error);
+				})
 		}
+
+	changeLoading = () => {
+		this.setState({
+			isLoading: true,
+		})
+	}
 
 	 render() {
     return (
 			<BrowserRouter>
 	      <div className="container">
-
-						<Route exact path="/" render={ () => <SearchForm onSearch={this.performSearch} /> }/>
-
-						<MainNav performSearch={this.performSearch} />
-
+						<Route exact path="/" render={ () => <SearchForm onSearch={this.performSearch} changeLoading={this.changeLoading} /> }/>
+						<Route path="/" render={ () => <MainNav performSearch={this.performSearch} changeLoading={this.changeLoading} /> } />
 						<Switch>
-
 						{
-							(this.state.loading)
-								? <Loading />
-								: <Route path="/" render={ () =><PhotoContainer passFlickrPhotos={this.state.flickrPhotos} searchText={this.state.searchText} /> } />
+							(this.state.isLoading)
+								? <Route component={Loading} />
+								:
+								 <Route path="/" render={ () => <PhotoContainer passFlickrPhotos={this.state.flickrPhotos} searchText={this.state.searchText} /> } />
 						}
-
-						{/*  Commented out da Not working. <Redirect to="/404" component={fourZeroFour} /> */}
+						<Route component={FourZeroFour} />
 					</Switch>
 	      </div>
 			</BrowserRouter>
