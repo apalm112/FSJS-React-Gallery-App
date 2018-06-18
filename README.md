@@ -2,7 +2,9 @@
 
   `$ npm i`
 
-* Add your own Flickr API key in the `.config.js` file to `const flickrAPI = '';`
+* Add your own Flickr API key in the `.config.js` file to 
+
+`const flickrAPI = '<you Flickr API key here>';`
 
 * From the command line run:
 
