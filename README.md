@@ -1,3 +1,5 @@
+# To Run the Project:
+
 * Clone the repo & from the command line run:
 
   `$ npm i`
