@@ -13,11 +13,11 @@ export default class SearchForm extends Component {
 
 	handleSubmit = event => {
 		event.preventDefault();
-		let query = this.query.value;
+		let searchText = this.query.value;
 		event.currentTarget.reset();
 		// this.props.onSearch(this.query.value);
 		this.props.props.history.push({
-			pathname: `/search/${query}`
+			pathname: `/search/${searchText}`
 		});
 	}
 

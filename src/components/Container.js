@@ -10,15 +10,16 @@ export default class Container extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			apiKey:flickrAPI,
 			flickrPhotos: [],
-			isLoading: true,
+			isLoading: false,
 			searchText: '',
 		};
 	}
 
 	// Default query value for initial page load.
 	performSearch = (query='tomato') => {
-		// this.setState({ isLoading: true }), () => {}
+		this.setState({ isLoading: true }), () => {}
 			axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrAPI}&tags=${query}&per_page=12&page=1&format=json&nojsoncallback=1`)
 			.then(response => {
 				let resFlickrData = response.data.photos.photo;
@@ -37,10 +38,6 @@ export default class Container extends Component {
 			})
 	}
 
-	componentDidMount() {
-		this.performSearch();
-	}
-
 	componentWillReceiveProps(props) {
 		(props.searchText)
 		? this.performSearch(props.searchText)
@@ -54,10 +51,10 @@ export default class Container extends Component {
 	render() {
 		return (
 			<div className="photo-container">
-				<h2>{this.state.query}</h2>
 				{(this.state.isLoading) ? <Loading />
 				: <PhotoContainer flickrPhotos={this.state.flickrPhotos}
-				 									performSearch={this.performSearch} /> }
+				 									performSearch={this.performSearch}
+												 	searchText={this.state.searchText}/> }
 			</div>
 		);
 	}

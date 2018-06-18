@@ -13,7 +13,7 @@ const MainNav = (props) => {
 						// The to="" prop controls what displays in the URL.
 						to="/Wave">Wave</NavLink></li>
 					<li><NavLink
-						to="/Black Labrador">Black Labrador</NavLink></li>
+						to="/Black Lab">Black Lab</NavLink></li>
 					<li><NavLink
 						to="/Pizza">Pizza</NavLink></li>
 				</ul>
