@@ -2,7 +2,9 @@ import React from 'react';
 
 const Loading = (props) => {
 	return (
-		<li>LOADING...</li>
+		<li className="spinner" >
+			<h2>LOADING</h2>
+		</li>
 	);
 };
 

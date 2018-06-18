@@ -1,78 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
 	BrowserRouter,
 	Redirect,
 	Route,
 	Switch
 } from 'react-router-dom';
-import axios from 'axios';
 
-import '../css/App.css';
-// import dataFetch from './dataFetch';
-import flickrAPI from '../.myConfig';
-import fourZeroFour from './FourZeroFour';
-import Loading from './Loading';
-import Navigation from './Navigation';
-import PhotoContainer from './PhotoContainer';
-import SearchForm from './SearchForm';
+// App Components
+import Container from './Container';
+import FourZeroFour from './exceeds/FourZeroFour';
+import MainNav from './MainNav';
 
-export default class App extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			flickrPhotos: [],
-			loading: true,
-			searchText: '',
-		};
-	}
-		componentDidMount() {
-			this.performSearch();
-		}
+const App = () => (
+	<BrowserRouter>
+		<div className="container">
+			<Route component={MainNav} />
+			<Switch>
+				<Route exact path= "/" render={ () => <Redirect to={'/search'} /> } />
+				<Route exact path="/search" component={Container} />
+				<Route path="/search/:searchText" component={Container} />
+				<Route path="/Wave" render={ () => { return <Container searchText={'Wave'} /> } } />
+				<Route path="/Black Lab" render={ () => { return <Container searchText={'Black Lab'} /> } } />
+				<Route path="/Pizza" render={ () => { return <Container searchText={'Pizza'} /> } } />
+				<Route component={FourZeroFour} />
+			</Switch>
+		</div>
+	</BrowserRouter>
+);
 
-		//   The first step your project needs to make is separating the router component (App.js) from the data fetching. The data fetching needs it’s own container component
-
-		performSearch = (query = "clouds") => {
-			axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrAPI}&tags=${query}&per_page=12&page=1&format=json&nojsoncallback=1`)
-			.then(response => {
-				let resFlickrData = response.data.photos.photo;
-					this.setState({
-					flickrPhotos: resFlickrData.map((photo) => {
-						return {
-							...photo,
-						}
-					}),
-					loading: false,
-					searchText: query,
-				})
-				console.log('searchText Value is: ', this.state.searchText);
-			})
-			.catch(error => {
-				console.error("Error fetching & parsing the data.", error);
-			})
-		}
-
-	 render() {
-    return (
-			<BrowserRouter>
-	      <div className="container">
-						<Route exact path="/" render={ () => <SearchForm onSearch={this.performSearch} /> }/>
-
-						{/* <Route path="/" component={dataFetch} /> */}
-
-						<Route path="/" render={ () => <Navigation performSearch={this.performSearch} /> } />
-						<Switch>
-
-						{
-							(this.state.loading)
-								? <Loading />
-								: <Route path="/" render={ () =><PhotoContainer passFlickrPhotos={this.state.flickrPhotos} searchText={this.state.searchText} /> } />
-						}
-
-						<Redirect to="/notfound" component={fourZeroFour} />
-
-					</Switch>
-	      </div>
-			</BrowserRouter>
-    );
-	}
-}
+export default App;

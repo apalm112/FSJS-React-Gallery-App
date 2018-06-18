@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
 
 export default class SearchForm extends Component {
-
-	state = {
-		searchText: ''
-	}
-
-	onSearchChange = e => {
-		this.setState({ searchText: e.target.value });
-	}
-
-	handleSubmit = e => {
-		e.preventDefault();
-		this.props.onSearch(this.query.value);
-		e.currentTarget.reset();
+	handleSubmit = event => {
+		event.preventDefault();
+		let searchText = this.query.value;
+		event.currentTarget.reset();
+		this.props.props.history.push({
+			pathname: `/search/${searchText}`
+		});
 	}
 
 	render() {
@@ -23,11 +17,9 @@ export default class SearchForm extends Component {
 				onSubmit={this.handleSubmit} >
 				<input
 					type="search"
-					onChange={this.onSearchChange}
 					name="search"
 					ref={(input) => this.query = input}
-					placeholder="Search Flickr"
-					// onSearch={this.props.performSearch}
+					placeholder="Search Flickr photos"
 				/>
 				<button type="submit" className="search-button">
 					<svg fill="#fff" height="24" viewBox="0 0 23 23" width="24" xmlns="http://www.w3.org/2000/svg">

@@ -1,13 +1,20 @@
-# To Run the Project:
+# FSJS Project #9: React Gallery App
 
-* Clone the repo & from the command line run:
+This project was bootstrapped with Create-React-App.  Built the React components, added to the supplied CSS and set up react-router-4 for the routing.  Fetches data from the Flickr API.
 
-  `$ npm i`
+## Installation
+Clone the GitHub repository & use `npm` to install the dependencies.
 
-* Add your own Flickr API key in the `.config.js` file to 
+```
+$ git clone git@github.com:apalm112/FSJS-Gulp-Built-Front-End-Website.git
 
+$ npm install
+```
+
+#### Add your Flickr API key to the `src/components/config.js` file.
 `const flickrAPI = '<you Flickr API key here>';`
 
-* From the command line run:
-
-  `$ npm start`
+* Run the app from the command line with:
+```
+$ npm start
+```
