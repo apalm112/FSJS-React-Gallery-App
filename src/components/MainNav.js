@@ -1,12 +1,13 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 
 import SearchForm from './SearchForm';
 
 const MainNav = (props) => {
 	return (
 		<header>
-			<SearchForm props={props} />
+			{/* This Route does not render the SearchForm component when a MainNav link is clicked.  */}
+			<Route path="/search" render={ () => <SearchForm props={props} /> } />
 			<nav className="main-nav">
 				<ul>
 					<li><NavLink

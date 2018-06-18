@@ -11,6 +11,9 @@ import Container from './Container';
 import MainNav from './MainNav';
 
 const App = () => (
+	// TODO:
+	// 			1) Fix SearchForm still displayed on routes it should not be displayed.
+	// 			2) Add a working 404-Error route.
 	<BrowserRouter>
 		<div className="container">
 			<Route component={MainNav} />
