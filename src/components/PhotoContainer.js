@@ -3,10 +3,7 @@ import Photo from './Photo';
 import NotFound from './exceeds/NotFound';
 
 const PhotoContainer = props => {
-	console.log('PROPS.flickrPhotos:   ', props.flickrPhotos);
 	const pherters = props.flickrPhotos;
-	// const results = props;
-	console.log('searchText:  ', props.searchText);
 	return (
 		<div className="photo-container">
 			<h2>{props.searchText}</h2>

@@ -12,8 +12,6 @@ import FourZeroFour from './exceeds/FourZeroFour';
 import MainNav from './MainNav';
 
 const App = () => (
-	// TODO:
-	// 			1) Add a working 404-Error route.
 	<BrowserRouter>
 		<div className="container">
 			<Route component={MainNav} />
