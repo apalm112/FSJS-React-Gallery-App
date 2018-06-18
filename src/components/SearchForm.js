@@ -1,23 +1,13 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
-
 
 export default class SearchForm extends Component {
-
-	state = {
-		searchText: ''
-	}
-
-	onSearchChange = e => {
-		this.setState({ searchText: e.target.value });
-	}
-
-	handleSubmit = e => {
-		e.preventDefault();
-		this.props.onSearch(this.query.value);
-		this.props.changeLoading();		
-		e.currentTarget.reset();
+	handleSubmit = event => {
+		event.preventDefault();
+		let searchText = this.query.value;
+		event.currentTarget.reset();
+		this.props.props.history.push({
+			pathname: `/search/${searchText}`
+		});
 	}
 
 	render() {
@@ -27,7 +17,6 @@ export default class SearchForm extends Component {
 				onSubmit={this.handleSubmit} >
 				<input
 					type="search"
-					onChange={this.onSearchChange}
 					name="search"
 					ref={(input) => this.query = input}
 					placeholder="Search Flickr photos"
@@ -38,31 +27,7 @@ export default class SearchForm extends Component {
 						<path d="M0 0h24v24H0z" fill="none"/>
 					</svg>
 				</button>
-
-				{/* // TODO: get the text '/search' to show in the URL bar when a user search is done. */}
-				<NavLink to="/:searchText" />
-
 			</form>
 		);
 	}
 }
-
-SearchForm.propTypes = {
-	onSearch: PropTypes.func.isRequired,
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
