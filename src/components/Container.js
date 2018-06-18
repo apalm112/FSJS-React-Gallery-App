@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import axios from 'axios';
 
-import flickrAPI from '../.myConfig';
+import flickrAPI from '../config';
 import PhotoContainer from './PhotoContainer';
 import Loading from './exceeds/Loading';
 
