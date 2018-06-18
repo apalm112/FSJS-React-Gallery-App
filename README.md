@@ -12,6 +12,7 @@ $ npm install
 ```
 
 #### Add your Flickr API key to the `src/components/config.js` file.
+`const flickrAPI = '<you Flickr API key here>';`
 
 * Run the app from the command line with:
 ```
