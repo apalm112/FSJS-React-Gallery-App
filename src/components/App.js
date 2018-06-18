@@ -8,6 +8,7 @@ import {
 
 // App Components
 import Container from './Container';
+import FourZeroFour from './exceeds/FourZeroFour';
 import MainNav from './MainNav';
 
 const App = () => (
@@ -23,6 +24,7 @@ const App = () => (
 				<Route path="/Wave" render={ () => { return <Container searchText={'Wave'} /> } } />
 				<Route path="/Black Lab" render={ () => { return <Container searchText={'Black Lab'} /> } } />
 				<Route path="/Pizza" render={ () => { return <Container searchText={'Pizza'} /> } } />
+				<Route component={FourZeroFour} />
 			</Switch>
 		</div>
 	</BrowserRouter>
