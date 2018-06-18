@@ -3,14 +3,17 @@ import Photo from './Photo';
 import NotFound from './exceeds/NotFound';
 
 const PhotoContainer = props => {
-	const results = props.passFlickrPhotos;
+	console.log('PROPS:   ', props.flickrPhotos);
+	const pherters = props.flickrPhotos;
+	const results = props;
+	console.log('searchText:  ', props.searchText);
 	return (
 		<div className="photo-container">
 			<h2>{props.searchText}</h2>
 			<ul>
 				{
-					results.length > 0
-						? results.map((photo) =>
+					pherters.length > 0
+						? pherters.map((photo) =>
 							<Photo
 								farm={photo.farm}
 								server={photo.server}
