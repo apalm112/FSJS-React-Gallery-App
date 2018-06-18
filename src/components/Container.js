@@ -38,13 +38,13 @@ export default class Container extends Component {
 			})
 	}
 
-	componentWillReceiveProps(props) {
+	UNSAFE_componentWillReceiveProps(props) {
 		(props.searchText)
 		? this.performSearch(props.searchText)
 		: this.performSearch(props.match.params.searchText)
 	}
 
-	componentWillMount() {
+	UNSAFE_componentWillMount() {
 		this.performSearch();
 	}
 
