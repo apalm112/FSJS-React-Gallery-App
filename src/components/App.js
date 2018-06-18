@@ -6,8 +6,6 @@ import {
 	Switch
 } from 'react-router-dom';
 
-import '../css/App.css';
-
 // App Components
 import Container from './Container';
 import MainNav from './MainNav';
