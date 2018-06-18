@@ -19,7 +19,7 @@ export default class Container extends Component {
 
 	// Default query value for initial page load.
 	performSearch = (query='tomato') => {
-		this.setState({ isLoading: true }), () => {}
+		this.setState({ isLoading: true })
 			axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrAPI}&tags=${query}&per_page=12&page=1&format=json&nojsoncallback=1`)
 			.then(response => {
 				let resFlickrData = response.data.photos.photo;
