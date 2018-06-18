@@ -11,12 +11,10 @@ import '../css/App.css';
 // App Components
 import Container from './Container';
 import MainNav from './MainNav';
-import SearchForm from './SearchForm';
 
 const App = () => (
 	<BrowserRouter>
 		<div className="container">
-			<Route component={SearchForm} />
 			<Route component={MainNav} />
 			<Switch>
 				<Route exact path= "/" render={ () => <Redirect to={'/search'} /> } />

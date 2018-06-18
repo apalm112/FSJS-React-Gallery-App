@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 export default class SearchForm extends Component {
 
-	state = {
+/*	state = {
 		searchText: ''
 	}
 
-	onSearchChange = e => {
-		this.setState({ searchText: e.target.value });
-	}
+	onSearchChange = event => {
+		this.setState({ searchText: event.target.value });
+	}*/
 
-	handleSubmit = e => {
-		e.preventDefault();
+	handleSubmit = event => {
+		event.preventDefault();
 		let query = this.query.value;
-		e.currentTarget.reset();
-		this.props.onSearch(this.query.value);
+		event.currentTarget.reset();
+		// this.props.onSearch(this.query.value);
 		this.props.props.history.push({
 			pathname: `/search/${query}`
 		});
-		this.props.changeLoading();
-		e.currentTarget.reset();
 	}
 
 	render() {
@@ -30,7 +28,7 @@ export default class SearchForm extends Component {
 				onSubmit={this.handleSubmit} >
 				<input
 					type="search"
-					onChange={this.onSearchChange}
+					// onChange={this.onSearchChange}
 					name="search"
 					ref={(input) => this.query = input}
 					placeholder="Search Flickr photos"
@@ -46,22 +44,6 @@ export default class SearchForm extends Component {
 	}
 }
 
-SearchForm.propTypes = {
-	onSearch: PropTypes.func.isRequired,
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
+// SearchForm.propTypes = {
+// 	onSearch: PropTypes.func.isRequired,
+// };

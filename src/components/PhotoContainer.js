@@ -5,7 +5,7 @@ import NotFound from './exceeds/NotFound';
 const PhotoContainer = props => {
 	console.log('PROPS:   ', props.flickrPhotos);
 	const pherters = props.flickrPhotos;
-	const results = props;
+	// const results = props;
 	console.log('searchText:  ', props.searchText);
 	return (
 		<div className="photo-container">

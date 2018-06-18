@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import flickrAPI from '../.myConfig';
 import PhotoContainer from './PhotoContainer';
+import Loading from './exceeds/Loading';
 
 export default class Container extends Component {
 	constructor(props) {
@@ -54,7 +55,7 @@ export default class Container extends Component {
 		return (
 			<div className="photo-container">
 				<h2>{this.state.query}</h2>
-				{(this.state.isLoading) ? <p>Loading...</p>
+				{(this.state.isLoading) ? <Loading />
 				: <PhotoContainer flickrPhotos={this.state.flickrPhotos}
 				 									performSearch={this.performSearch} /> }
 			</div>
