@@ -22,6 +22,7 @@ const App = () => (
 				<Route path="/Wave" render={ () => { return <Container searchText={'Wave'} /> } } />
 				<Route path="/Black Lab" render={ () => { return <Container searchText={'Black Lab'} /> } } />
 				<Route path="/Pizza" render={ () => { return <Container searchText={'Pizza'} /> } } />
+				<Route path="/Search" render={ () => { return <Container searchText={'Search'} /> } } />
 				<Route component={FourZeroFour} />
 			</Switch>
 		</div>

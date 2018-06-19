@@ -17,6 +17,8 @@ const MainNav = (props) => {
 						to="/Black Lab">Black Lab</NavLink></li>
 					<li><NavLink
 						to="/Pizza">Pizza</NavLink></li>
+					<li><NavLink
+							to="/Search">Search</NavLink></li>
 				</ul>
 			</nav>
 		</header>
