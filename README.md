@@ -6,7 +6,7 @@ This project was bootstrapped with Create-React-App.  Built the React components
 Clone the GitHub repository & use `npm` to install the dependencies.
 
 ```
-$ git clone git@github.com:<repo>.git
+$ git clone git@github.com:apalm112/FSJS-Gulp-Built-Front-End-Website.git
 
 $ npm install
 ```
