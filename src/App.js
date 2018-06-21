@@ -7,12 +7,13 @@ import {
 } from 'react-router-dom';
 
 // App Components
-import Container from './Container';
-import FourZeroFour from './exceeds/FourZeroFour';
-import MainNav from './MainNav';
+import Container from './components/Container';
+import FourZeroFour from './components/exceeds/FourZeroFour';
+import MainNav from './components/MainNav';
 
+// TODO: Add in comments for how everything is working!
 const App = () => (
-	// TODO: Add in comments for how everything is working!
+	// A stateless component written using an arrow function, to control the Routes.  When describing a component using a function you can access props by passing the function the props object via the props argument.
 	<BrowserRouter>
 		{/* BrowserRouter renders the root router that listens to URL changes & provides other React router components information about the current URL & which components to render, that way your UI is always in sync w/ the URL. */}
 		<div className="container">
@@ -28,6 +29,7 @@ const App = () => (
 				<Route path="/Pizza" render={ () => { return <Container searchText={'Pizza'} /> } } />
 				<Route path="/Search" render={ () => { return <Container searchText={'Search'} /> } } />
 				<Route component={FourZeroFour} />
+				{/* The 404 Route is created by leaving the path out, so all other paths will catch it & render the 404 Error Message. */}
 			</Switch>
 		</div>
 	</BrowserRouter>
