@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 
 export default class SearchForm extends Component {
+	// TODO: Add in comments for how everything is working!
 	handleSubmit = event => {
 		event.preventDefault();
 		let searchText = this.query.value;
+		// Empties out the user text from the input.
 		event.currentTarget.reset();
+		// Pushs the nav action into the Browser History Object.
 		this.props.props.history.push({
 			pathname: `/search/${searchText}`
 		});
@@ -14,10 +17,12 @@ export default class SearchForm extends Component {
 		return (
 			<form
 				className="search-form"
+				// When input is submitted this method gets called.
 				onSubmit={this.handleSubmit} >
 				<input
 					type="search"
 					name="search"
+					// This line below?
 					ref={(input) => this.query = input}
 					placeholder="Search Flickr photos"
 				/>

@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 
+// Makes the API call.
 import axios from 'axios';
 
-import flickrAPI from '../config';
+import flickrAPI from '../myConfig';
 import PhotoContainer from './PhotoContainer';
 import Loading from './exceeds/Loading';
 
+// Creates a new Componet Class & exports it.
 export default class Container extends Component {
+	// The constructor creates & holds the state for the App.
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -19,6 +22,7 @@ export default class Container extends Component {
 
 	// Default query value for initial page load.
 	performSearch = (query='tomato') => {
+		// Change isLoading to true so the Loading Spinner will be displayed.
 		this.setState({ isLoading: true })
 			axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrAPI}&tags=${query}&per_page=12&page=1&format=json&nojsoncallback=1`)
 			.then(response => {
@@ -44,7 +48,12 @@ export default class Container extends Component {
 		: this.performSearch(props.match.params.searchText)
 	}
 
-	UNSAFE_componentWillMount() {
+	/*UNSAFE_componentWillMount() {
+		this.performSearch();
+	}
+	Replaced w/ the method below:
+	*/
+	componentDidMount() {
 		this.performSearch();
 	}
 
