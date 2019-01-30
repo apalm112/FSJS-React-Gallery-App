@@ -48,7 +48,12 @@ export default class Container extends Component {
 		: this.performSearch(props.match.params.searchText)
 	}
 
-	UNSAFE_componentWillMount() {
+	/*UNSAFE_componentWillMount() {
+		this.performSearch();
+	}
+	Replaced w/ the method below:
+	*/
+	componentDidMount() {
 		this.performSearch();
 	}
 
