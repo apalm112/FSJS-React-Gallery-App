@@ -21,49 +21,6 @@ import Loading from './components/exceeds/Loading';
 // TODO: Add in comments for how everything is working!
 // Creates a new Componet Class & exports it.
 export default class App extends Component {
-	// The constructor creates & holds the state for the App.
-	constructor(props) {
-		super(props);
-		this.state = {
-			apiKey:flickrAPI,
-			flickrPhotos: [],
-			isLoading: false,
-			searchText: '',
-		};
-	}
-
-	// Default query value for initial page load.
-	performSearch = (query='tomato') => {
-		// Change isLoading to true so the Loading Spinner will be displayed.
-		this.setState({ isLoading: true })
-			axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrAPI}&tags=${query}&per_page=12&page=1&format=json&nojsoncallback=1`)
-			.then(response => {
-				let resFlickrData = response.data.photos.photo;
-					this.setState({
-					flickrPhotos: resFlickrData.map((photo) => {
-						return {
-							...photo,
-						}
-					}),
-					isLoading: false,
-					searchText: query,
-				})
-			})
-			.catch(error => {
-				console.error("Error fetching & parsing the data.", error);
-			})
-	}
-
-	componentDidMount(props) {
-		this.performSearch();
-	}
-
-	componentDidUpdate(prevProps, props) {
-		if (prevProps.searchText !== this.props.searchText) {
-			this.performSearch(props.searchText)
-		}
-	}
-
 	render() {
 		return (
 

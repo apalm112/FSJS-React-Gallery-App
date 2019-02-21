@@ -42,17 +42,22 @@ export default class Container extends Component {
 			})
 	}
 
-	UNSAFE_componentWillReceiveProps(props) {
+/*	UNSAFE_componentWillReceiveProps(props) {
 		(props.searchText)
 		? this.performSearch(props.searchText)
 		: this.performSearch(props.match.params.searchText)
+	}*/
+	// TODO: Replace the above method w/ non-UNSAFE_ method
+	componentDidUpdate(prevProps, prevState) {
+		if (prevProps.searchText !== this.props.searchText) {
+			this.performSearch(this.props.searchText);
+		}
 	}
 
 	/*UNSAFE_componentWillMount() {
 		this.performSearch();
 	}
-	Replaced w/ the method below:
-	*/
+	Replaced w/ the method below:		*/
 	componentDidMount() {
 		this.performSearch();
 	}
