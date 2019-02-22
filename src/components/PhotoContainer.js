@@ -1,11 +1,10 @@
 import React from 'react';
 
-import Loading from './exceeds/Loading';
 import NotFound from './exceeds/NotFound';
 import Photo from './Photo';
 
 const PhotoContainer = (props) => {
-	console.log('OVER HERE searchText:::::::::::', props.searchText);
+	console.log('OVER HERE PhotoContainer searchText:::::::::::', props.searchText);
 	let pherters = props.flickrPhotos;
 
 	return (
