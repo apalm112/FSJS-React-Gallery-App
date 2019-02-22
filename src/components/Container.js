@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+
+import flickrAPI from '../myConfig';
+import Loading from './exceeds/Loading';
+import NotFound from './exceeds/NotFound';
+import SearchForm from './SearchForm';
+import Photo from './Photo';
 
 // Makes the API call.
 import axios from 'axios';
-
-import flickrAPI from '../myConfig';
-import PhotoContainer from './PhotoContainer';
-import Loading from './exceeds/Loading';
 
 // Creates a new Componet Class & exports it.
 export default class Container extends Component {
@@ -42,34 +45,48 @@ export default class Container extends Component {
 			})
 	}
 
-/*	UNSAFE_componentWillReceiveProps(props) {
-		(props.searchText)
-		? this.performSearch(props.searchText)
-		: this.performSearch(props.match.params.searchText)
-	}*/
-	// TODO: Replace the above method w/ non-UNSAFE_ method
-	componentDidUpdate(prevProps, prevState) {
-		if (prevProps.searchText !== this.props.searchText) {
-			this.performSearch(this.props.searchText);
-		}
-	}
-
-	/*UNSAFE_componentWillMount() {
-		this.performSearch();
-	}
-	Replaced w/ the method below:		*/
 	componentDidMount() {
 		this.performSearch();
 	}
 
+	componentDidUpdate(prevProps, prevState) {
+		if (this.props.searchText !== prevProps.searchText) {
+			this.performSearch(this.props.searchText);
+		}
+	}
+
 	render() {
-		return (
-			<div className="photo-container">
-				{(this.state.isLoading) ? <Loading />
-				: <PhotoContainer flickrPhotos={this.state.flickrPhotos}
-				 									performSearch={this.performSearch}
-												 	searchText={this.state.searchText}/> }
-			</div>
-		);
+		const results = this.state.flickrPhotos;
+		let images;
+		if(results.length > 0) {
+			images = results.map((photo) =>
+				<Photo
+					farm={photo.farm}
+					server={photo.server}
+					secret={photo.secret}
+					id={photo.id}
+					key={photo.id}
+				/>
+			);
+		} else {
+		images =	<NotFound query={this.state.searchText} />
+		}
+
+		if(this.props.searchText) {
+			return (
+				<div className="photo-container">
+					<h2>{this.state.searchText}</h2>
+					{ (this.state.isLoading) ? <Loading /> : <ul>{images}</ul> }
+				</div>
+			);
+		} else {
+			return (
+				<div className="photo-container">
+				<Route path="/search" render={ () => <SearchForm onSearch={this.performSearch} props={this.props} />} />
+					<h2>{this.state.searchText}</h2>
+					{ (this.state.isLoading) ? <Loading /> : <ul>{images}</ul> }
+				</div>
+			);
+		}
 	}
 }
