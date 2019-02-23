@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
 
 export default class SearchForm extends Component {
-	// TODO: Add in comments for how everything is working!
-
 	handleSubmit = (event) => {
 		event.preventDefault();
 		let searchText = this.query.value;
 		event.currentTarget.reset();  // Empties out the user text from the input.
-		console.log('SearchForm THIS.QUERY.VALUE', searchText);
 		// Pushs the nav action into the Browser History Object.
 		this.props.props.history.push({ pathname: `/search/${searchText}` });
 		this.props.onSearch(searchText);
-
-		console.log('SearchForm props:       ', this.props);
 	}
 
 	render() {

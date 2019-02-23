@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
 	BrowserRouter,
 	Redirect,
@@ -12,7 +12,6 @@ import ErrorBoundary from './components/ErrorBoundary';
 import FourZeroFour from './components/exceeds/FourZeroFour';
 import MainNav from './components/MainNav';
 
-// TODO: Add in comments for how everything is working!
 const App = () => (
 	<BrowserRouter>
 		{/* BrowserRouter renders the root router that listens to URL changes & provides other React router components information about the current URL & which components to render, that way your UI is always in sync w/ the URL. */}
