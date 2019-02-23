@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+
+import flickrAPI from '../myConfig';
+import Loading from './exceeds/Loading';
+import NotFound from './exceeds/NotFound';
+import SearchForm from './SearchForm';
+import Photo from './Photo';
 
 // Makes the API call.
 import axios from 'axios';
-
-import flickrAPI from '../myConfig';
-import PhotoContainer from './PhotoContainer';
-import Loading from './exceeds/Loading';
 
 // Creates a new Componet Class & exports it.
 export default class Container extends Component {
@@ -42,29 +45,45 @@ export default class Container extends Component {
 			})
 	}
 
+	componentDidMount() {
+		this.performSearch();
+	}
+/*	componentDidUpdate(prevProps, prevState) {
+		if (this.props.searchText !== prevProps.searchText) {
+			this.performSearch(this.props.searchText);
+		} // NOT WORKING
+	*/
 	UNSAFE_componentWillReceiveProps(props) {
 		(props.searchText)
 		? this.performSearch(props.searchText)
 		: this.performSearch(props.match.params.searchText)
 	}
 
-	/*UNSAFE_componentWillMount() {
-		this.performSearch();
-	}
-	Replaced w/ the method below:
-	*/
-	componentDidMount() {
-		this.performSearch();
-	}
-
 	render() {
-		return (
-			<div className="photo-container">
-				{(this.state.isLoading) ? <Loading />
-				: <PhotoContainer flickrPhotos={this.state.flickrPhotos}
-				 									performSearch={this.performSearch}
-												 	searchText={this.state.searchText}/> }
-			</div>
-		);
-	}
+		const results = this.state.flickrPhotos;
+			return (
+				<div className="photo-container">
+				<Route path="/search" render={ () => <SearchForm onSearch={this.performSearch} props={this.props} />} />
+					{ (this.state.isLoading) ? <Loading />
+						: <div className="photo-container">
+								<h2>{this.state.searchText}</h2>
+								<ul>
+									{
+										results.length > 0
+											? results.map((photo) =>
+												<Photo
+													farm={photo.farm}
+													server={photo.server}
+													secret={photo.secret}
+													id={photo.id}
+													key={photo.id}
+												/>)
+											: <NotFound query={this.state.searchText}/>
+									}
+								</ul>
+							</div>
+					}
+				</div>
+			);
+		}
 }

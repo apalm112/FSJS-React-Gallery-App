@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 
 export default class SearchForm extends Component {
-	// TODO: Add in comments for how everything is working!
-	handleSubmit = event => {
+	handleSubmit = (event) => {
 		event.preventDefault();
 		let searchText = this.query.value;
-		// Empties out the user text from the input.
-		event.currentTarget.reset();
+		event.currentTarget.reset();  // Empties out the user text from the input.
 		// Pushs the nav action into the Browser History Object.
-		this.props.props.history.push({
-			pathname: `/search/${searchText}`
-		});
+		this.props.props.history.push({ pathname: `/search/${searchText}` });
+		this.props.onSearch(searchText);
 	}
 
 	render() {
@@ -22,7 +19,7 @@ export default class SearchForm extends Component {
 				<input
 					type="search"
 					name="search"
-					// This line below?
+					// ref is used to access the value of the input fields or the DOM element.  When used on an HTML element, the ref attribute takes a callback function that receives the underlying DOM element as its argument, in this case the input.
 					ref={(input) => this.query = input}
 					placeholder="Search Flickr photos"
 				/>

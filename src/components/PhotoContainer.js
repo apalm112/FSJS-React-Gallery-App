@@ -1,9 +1,11 @@
 import React from 'react';
-import Photo from './Photo';
-import NotFound from './exceeds/NotFound';
 
-const PhotoContainer = props => {
-	const pherters = props.flickrPhotos;
+import NotFound from './exceeds/NotFound';
+import Photo from './Photo';
+
+const PhotoContainer = (props) => {
+	let pherters = props.flickrPhotos;
+
 	return (
 		<div className="photo-container">
 			<h2>{props.searchText}</h2>
