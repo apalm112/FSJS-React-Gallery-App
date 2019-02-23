@@ -48,11 +48,17 @@ export default class Container extends Component {
 	componentDidMount() {
 		this.performSearch();
 	}
-	componentDidUpdate(prevProps, prevState) {
+/*	componentDidUpdate(prevProps, prevState) {
 		if (this.props.searchText !== prevProps.searchText) {
 			this.performSearch(this.props.searchText);
-		}
+		} // NOT WORKING
+	*/
+	UNSAFE_componentWillReceiveProps(props) {
+		(props.searchText)
+		? this.performSearch(props.searchText)
+		: this.performSearch(props.match.params.searchText)
 	}
+
 	render() {
 		const results = this.state.flickrPhotos;
 			return (
