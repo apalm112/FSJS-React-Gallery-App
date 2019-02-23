@@ -6,11 +6,11 @@ export default class SearchForm extends Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 		let searchText = this.query.value;
-		this.props.onSearch(searchText);
 		event.currentTarget.reset();  // Empties out the user text from the input.
 		console.log('SearchForm THIS.QUERY.VALUE', searchText);
 		// Pushs the nav action into the Browser History Object.
 		this.props.props.history.push({ pathname: `/search/${searchText}` });
+		this.props.onSearch(searchText);
 
 		console.log('SearchForm props:       ', this.props);
 	}

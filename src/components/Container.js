@@ -48,45 +48,36 @@ export default class Container extends Component {
 	componentDidMount() {
 		this.performSearch();
 	}
-
 	componentDidUpdate(prevProps, prevState) {
 		if (this.props.searchText !== prevProps.searchText) {
 			this.performSearch(this.props.searchText);
 		}
 	}
-
 	render() {
 		const results = this.state.flickrPhotos;
-		let images;
-		if(results.length > 0) {
-			images = results.map((photo) =>
-				<Photo
-					farm={photo.farm}
-					server={photo.server}
-					secret={photo.secret}
-					id={photo.id}
-					key={photo.id}
-				/>
-			);
-		} else {
-		images =	<NotFound query={this.state.searchText} />
-		}
-
-		if(this.props.searchText) {
-			return (
-				<div className="photo-container">
-					<h2>{this.state.searchText}</h2>
-					{ (this.state.isLoading) ? <Loading /> : <ul>{images}</ul> }
-				</div>
-			);
-		} else {
 			return (
 				<div className="photo-container">
 				<Route path="/search" render={ () => <SearchForm onSearch={this.performSearch} props={this.props} />} />
-					<h2>{this.state.searchText}</h2>
-					{ (this.state.isLoading) ? <Loading /> : <ul>{images}</ul> }
+					{ (this.state.isLoading) ? <Loading />
+						: <div className="photo-container">
+								<h2>{this.state.searchText}</h2>
+								<ul>
+									{
+										results.length > 0
+											? results.map((photo) =>
+												<Photo
+													farm={photo.farm}
+													server={photo.server}
+													secret={photo.secret}
+													id={photo.id}
+													key={photo.id}
+												/>)
+											: <NotFound query={this.state.searchText}/>
+									}
+								</ul>
+							</div>
+					}
 				</div>
 			);
 		}
-	}
 }
