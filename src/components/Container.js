@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
-import flickrAPI from '../myConfig';
+// import flickrAPI from '../myConfig';
 import Loading from './exceeds/Loading';
 import NotFound from './exceeds/NotFound';
 import SearchForm from './SearchForm';
@@ -16,7 +16,7 @@ export default class Container extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			apiKey:flickrAPI,
+			apiKey: process.env.REACT_APP_API_KEY,
 			flickrPhotos: [],
 			isLoading: false,
 			searchText: '',
@@ -27,7 +27,7 @@ export default class Container extends Component {
 	performSearch = (query='tomato') => {
 		// Change isLoading to true so the Loading Spinner will be displayed.
 		this.setState({ isLoading: true })
-			axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrAPI}&tags=${query}&per_page=12&page=1&format=json&nojsoncallback=1`)
+			axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${this.state.apiKey}&tags=${query}&per_page=12&page=1&format=json&nojsoncallback=1`)
 			.then(response => {
 				let resFlickrData = response.data.photos.photo;
 					this.setState({
