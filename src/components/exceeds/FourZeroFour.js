@@ -5,7 +5,7 @@ const fourZeroFour = () => {
 		<li className='not-found'>
 			<i className="material-icons icn-error">error</i>
 			<h3>404, Eh.</h3>
-			<p>Page Not Found, please try again.</p>
+			<p>Page Not Found</p>
 		</li>
 	);
 };
