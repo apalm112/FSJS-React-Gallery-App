@@ -27,7 +27,7 @@ export default class Container extends Component {
 	performSearch = (query='tomato') => {
 		// Change isLoading to true so the Loading Spinner will be displayed.
 		this.setState({ isLoading: true })
-			axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${this.state.apiKey}&tags=${query}&per_page=12&page=1$safe_search=1&format=json&nojsoncallback=1`)
+			axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${this.state.apiKey}&tags=${query}&per_page=25&page=1$safe_search=1&format=json&nojsoncallback=1`)
 			.then(response => {
 				let resFlickrData = response.data.photos.photo;
 					this.setState({

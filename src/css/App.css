@@ -119,6 +119,16 @@ input {
   font-size: 3.2em;
   margin-bottom: .25em;
 }
+
+/* TODO's:
+
+          1) The images should be in a scrolling area and the search field should stay on the screen.
+
+          2) Images in the scrolling areas should be resized to fit on-screen fully,
+          and centered horizontally if they don’t reach the left and right edges 
+          of the containing element.
+*/
+
 /* MEDIA QUERIES ***************************/
 @media only screen and (max-width: 767px)  {
   body {
